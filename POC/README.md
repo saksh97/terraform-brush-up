@@ -16,19 +16,54 @@ Based on the included POC documentation assets, the workflow covers:
 - **Cloud Provider:** Amazon Web Services (AWS)
 - **Host OS:** Ubuntu Linux
 
-## 📦 File Structure & Assets
+## 📦 Walkthrough & Step-by-Step Proof
 
-The `POC/` directory contains visual verification screenshots mapping out each stage of the setup:
+The following screenshots detail each milestone of the Proof of Concept lifecycle within the `POC/` directory:
 
-* **`install_terraform_on_ubuntu.png`** – Installing and verifying the Terraform CLI on Ubuntu.
-* **`attaching_role_to_terraform_Server.png`** – Attaching the required execution IAM role to the control instance.
-* **`role_to_authorize_terraform_access_EC2.png`** – IAM configuration allowing secure management of targeted EC2 resources.
-* **`main.tf.screenshot.png`** – Visual reference of the core declarative configuration file.
-* **`terraform_init.png`** – Initializing the working directory and downloading cloud provider plugins.
-* **`terraform_plan.png`** – Generating and inspecting the execution plan before modifying live assets.
-* **`terraform_apply.png`** – Building the target architecture on AWS.
-* **`EC2_console.png`** – Post-deployment validation within the AWS Management Console.
-* **`terraform_destroy.png`** – Tearing down all managed infrastructure to prevent ongoing billing.
+### 1. Environment & Server Setup
+Before executing any infrastructure code, the deployment host is configured and authenticated.
+
+* **Terraform Installation**
+  * Verifying installation steps on an Ubuntu instance.
+  * ![Install Terraform](./POC/install_terraform_on_ubuntu.png)
+
+* **IAM Instance Profile Assignment**
+  * Attaching the required execution IAM role directly to the control server host.
+  * ![Attach Role to Server](./POC/attaching_role_to_terraform_Server.png)
+
+* **Access Authorization**
+  * Ensuring the configuration grants the exact execution permissions needed to modify target EC2 instances.
+  * ![EC2 Access Authorization](./POC/role_to_authorize_terraform_access_EC2.png)
+
+### 2. Configuration & Execution Workflow
+The deployment phase covers script structure validation followed by standard initialization and applying the declarative configurations.
+
+* **Main Configuration Script**
+  * Reference mapping out provider configuration and structural blocks within the primary file.
+  * ![Main.tf Configuration](./POC/main.tf.screenshot.png)
+
+* **Terraform Initialization (`terraform init`)**
+  * Initializing the local backend provider plugins.
+  * ![Terraform Init](./POC/terraform_init.png)
+
+* **Execution Plan (`terraform plan`)**
+  * Previewing dry-run modifications before provisioning real cloud resources.
+  * ![Terraform Plan](./POC/terraform_plan.png)
+
+* **Applying Changes (`terraform apply`)**
+  * Allocating live assets onto Amazon Web Services.
+  * ![Terraform Apply](./POC/terraform_apply.png)
+
+### 3. Verification & Resource Teardown
+Confirming that infrastructure was safely processed, monitored, and cleanly removed at lifecycle end.
+
+* **AWS Management Console Validation**
+  * Verifying instances were initialized and run properly.
+  * ![EC2 Console Verification](./POC/EC2_console.png)
+
+* **Infrastructure Demolition (`terraform destroy`)**
+  * Cleaning up and decommissioning resources to minimize structural overhead or accidental runtime fees.
+  * ![Terraform Destroy](./POC/terraform_destroy.png)
 
 ## 🚦 Usage
 
